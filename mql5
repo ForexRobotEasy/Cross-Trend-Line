@@ -1,0 +1,100 @@
+
+//+------------------------------------------------------------------+
+//|                                                    Cross Trend Line|
+//|                                       https://forexroboteasy.com  |
+//|                                               Forex Robot Easy Team|
+//+------------------------------------------------------------------+
+
+// Global variables
+input bool automaticMode = true; // Flag to indicate automatic or manual trading mode
+input ENUM_DIRECTION manualDirection = UP; // Manual trading direction: UP (buy) or DOWN (sell)
+
+//+------------------------------------------------------------------+
+//| Expert Advisor initialization function                              |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Add necessary initialization code here
+    
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Expert Advisor start function                                       |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+    // Check if automatic mode is enabled
+    if (automaticMode)
+    {
+        // Call function to identify trends in larger time frame
+        bool isUptrend = IdentifyTrend();
+
+        // Call function to search for entry points in smaller time frame
+        bool isEntryPoint = SearchEntryPoints();
+
+        // Place trades based on identified trends and entry points
+        if (isUptrend && isEntryPoint)
+        {
+            OpenBuyTrade();
+        }
+        else if (!isUptrend && isEntryPoint)
+        {
+            OpenSellTrade();
+        }
+    }
+    else
+    {
+        // Manual trading mode
+        if (manualDirection == UP)
+        {
+            OpenBuyTrade();
+        }
+        else if (manualDirection == DOWN)
+        {
+            OpenSellTrade();
+        }
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Function to identify trends in larger time frame                  |
+//+------------------------------------------------------------------+
+bool IdentifyTrend()
+{
+    // Add code to identify trends in larger time frame here
+    
+    return true; // Replace with logic to determine trend
+}
+
+//+------------------------------------------------------------------+
+//| Function to search for entry points in smaller time frame         |
+//+------------------------------------------------------------------+
+bool SearchEntryPoints()
+{
+    // Add code to search for entry points in smaller time frame here
+    
+    return true; // Replace with logic to determine entry point
+}
+
+//+------------------------------------------------------------------+
+//| Function to open a buy trade                                       |
+//+------------------------------------------------------------------+
+void OpenBuyTrade()
+{
+    // Add code to open a buy trade here
+    
+    // Replace with actual trade execution logic
+    Print('Buy trade opened');
+}
+
+//+------------------------------------------------------------------+
+//| Function to open a sell trade                                      |
+//+------------------------------------------------------------------+
+void OpenSellTrade()
+{
+    // Add code to open a sell trade here
+    
+    // Replace with actual trade execution logic
+    Print('Sell trade opened');
+}
